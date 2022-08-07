@@ -9,20 +9,19 @@ import com.pack.Bank.model.Corporates;
 import com.pack.Bank.model.User;
 
 public class UserDao {
-	public int getUserByEmail(String email, String password){
-		int count = 0;
+	public String getUserByEmail(String email){
+		String pass = "";
 		try{
 			Connection con=MySqlConn.getCon();
-			PreparedStatement ps=con.prepareStatement("select count(*) from users where loginId=? and password=?");
+			PreparedStatement ps=con.prepareStatement("select password from users where loginId=?");
 			ps.setString(1,email);
-			ps.setString(2,password);
 			ResultSet rs=ps.executeQuery();
 			rs.next();
-			count = rs.getInt(1);
-			System.out.println(count);
+			pass = rs.getString(1);
+			System.out.println(pass);
+			return pass;
 		}
-		catch(Exception e){System.out.println(e);}
-		return count;
+		catch(Exception e){System.out.println(e); return null;}
 	}
 	public int changePassword(String email,String password) {
 		int status=0;

@@ -10,27 +10,36 @@
 <title>Account Set Up</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/main.css" />
 <style>
-.div-1{
-	margin-left:10%;
-	width:80%;
-	align-content:center;
-	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-	z-index: -1;
+html{
+    height: 100%;
 }
-#accountadd {
-	margin-left:30%;
-	align-content:center;
-	width:30%;
+body{
+	background-image:url("../ImagesServlet?action=account_icon1");
+	background-size:40% 30%;
+    background-repeat:no-repeat;
+    background-position:bottom left;
+    background-color:white;
+    min-height:95%;
+}
+.cards {
+	margin-left:10%;
 	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-	position:absolute;
-	z-index: 9999;
-    overflow: hidden;
-    top: 50%;
-    
+	background-color:#b1d3ee;
+	width:80%;
+	height:50%;
+	
 }
 </style>
 </head>
 <body>
+     <% response.setHeader("Cache-Control","no-cache");
+     response.setHeader("Cache-Control","no-store");
+     response.setHeader("Pragma","no-cache");
+     response.setDateHeader ("Expires", 0);
+     if (session.getAttribute("email") ==null || session.getAttribute("userType").equals("front")) {
+     		response.sendRedirect("../loginError.jsp");
+     }%>
+     
 	<sql:setDataSource var="dbsource" driver="com.mysql.cj.jdbc.Driver"
                            url="jdbc:mysql://localhost:3306/smartbank"
                            user="root"  password="#&AnaShree24##"/>
@@ -39,14 +48,15 @@
             select corporateName,corporateId from corporate where softdeleted=0 group by corporateId;
      </sql:query>
      
-     <div class="card">
+     <div>
 		<div class="nav">
-			<h3>SMART BANK</h3>
-			<a href="LoginServlet?action=<c:out value="logout"/>">LogOut</a>
-			<a href="user.jsp">User SetUp</a>
-			<a href="corporate.jsp">Corporate SetUp</a>
+			<h3 style="font-family:serif;font-weight:bold;text-align:center;font-size:large;">SMART BANK</h3>
+			<a href="../LoginServlet?action=<c:out value="logout"/>">LogOut</a>
+			<a href="../UserSetUp/user.jsp">User SetUp</a>
+			<a href="../CorporateSetUp/corporate.jsp">Corporate SetUp</a>
 		</div>
-			    <h3 style="text-align: center;font-weight:normal;"><u>Our Accounts.</u></h3>
+		<div class="cards">
+			    <h2 style="text-align: center;font-weight:normal;"><u>Our Accounts.</u></h2>
 			    <c:forEach var="row" items="${result.rows}">
 			    <div class="div-1">
 				   <table class="ac">
@@ -65,6 +75,7 @@
                    </table><br>
                 </div>
             </c:forEach>
-	</div>
+           </div>
+		</div>
 </body>
 </html>

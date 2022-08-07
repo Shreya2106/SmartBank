@@ -54,4 +54,56 @@ public class AccountDao {
 
 		return cid;
 	}
+	public String getBalanceFromAcNo(String acNo) {
+		String bal="";
+		try{
+			Connection con=MySqlConn.getCon();
+			PreparedStatement ps=con.prepareStatement("select balance from accounts where accountNumber=?;");
+			ps.setString(1,acNo);
+			ResultSet rs=ps.executeQuery();
+			while(rs.next()){
+				bal = rs.getString("balance");
+			}
+		}catch(Exception e){System.out.println(e);}
+
+		return bal;
+	}
+	public int setBalanceAfterTrans(String bal,String acNo) {
+		int status=0;
+		try{
+			Connection con=MySqlConn.getCon();
+			PreparedStatement ps=con.prepareStatement("update accounts set balance=? where accountNumber=?;");
+			ps.setString(1,bal);
+			ps.setString(2,acNo);
+			status=ps.executeUpdate();
+		}catch(Exception e){System.out.println(e);}
+		return status;
+	}
+	public boolean checkACName(String acName) {
+		boolean result=false;
+		try{
+			Connection con=MySqlConn.getCon();
+			PreparedStatement ps=con.prepareStatement("select count(*) from accounts where accountName=?;");
+			ps.setString(1,acName);
+			ResultSet rs=ps.executeQuery();
+			while(rs.next()){
+				if(rs.getInt(1)!=0) result = true;
+				System.out.println(rs.getInt(1));
+			}
+		}catch(Exception e){System.out.println(e);}
+		return result;
+	}
+	public boolean checkACNo(String acNo) {
+		boolean result=false;
+		try{
+			Connection con=MySqlConn.getCon();
+			PreparedStatement ps=con.prepareStatement("select count(*) from accounts where accountNumber=?;");
+			ps.setString(1,acNo);
+			ResultSet rs=ps.executeQuery();
+			while(rs.next()){
+				if(rs.getInt(1)!=0) result = true;
+				System.out.println(rs.getInt(1)); }
+		}catch(Exception e){System.out.println(e);}
+		return result;
+	}
 }
