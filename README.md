@@ -1,5 +1,6 @@
 ## Steps to execute the project:
-<li> Fork the project and import it in eclipse.
+<li> Fork the project and clone it.
+<li> import it in eclipse.
 <li> Create the mysql database smartbank.
 <li> Insert some values to this database.
 <li> Change the username and password from MysqlCon.java.
