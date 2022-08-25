@@ -2,6 +2,8 @@
 
 <li> mysql> create database smartbank;
   
+<li> mysql> create table bank_login_cred(loginid varchar(30) primary key,password varchar(20));
+
 <li> mysql> create table corporate(corporateId int not null primary key auto_increment,corporateName varchar(30),address varchar(30),contactNumber varchar(10));
   
 <li> mysql> ALTER TABLE corporate AUTO_INCREMENT=1001;
@@ -12,27 +14,76 @@
   
 <li> mysql> alter table users add changed boolean default false;
   
-<li> mysql> create table accounts(corporateId int,foreign key(corporateId) references corporate(corporateId),accountNumber varchar(10) primary key,accountName varchar(20),branch varchar(20),currency varchar(20),balance long,active boolean,openingBalance long,closingBalance long);
+<li> mysql> create table accounts(corporateId int,foreign key(corporateId) references corporate(corporateId),accountNumber int primary key auto_increment,accountName varchar(20),branch varchar(20),currency varchar(20),balance long,active boolean,openingBalance long,closingBalance long);
   
-<li> mysql> create table transaction(accountNumber varchar(10),foreign key(accountNumber) references accounts(accountNumber),transactionId int not null primary key auto_increment,transactionType varchar(10),transactionDate date,balance long);
+<li> mysql> ALTER TABLE accounts AUTO_INCREMENT=1001100100;
+  
+<li> mysql> create table transaction(accountNumber int,foreign key(accountNumber) references accounts(accountNumber),transactionId int not null primary key auto_increment,transactionType varchar(10),transactionDate date,balance long);
   
 <li> mysql> ALTER TABLE transaction AUTO_INCREMENT=1001;
   
+### Table description
   
-  ### Inserting some basic values
+mysql> desc bank_login_cred;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| loginid  | varchar(30) | NO   | PRI | NULL    |       |
+| password | varchar(20) | YES  |     | NULL    |       |
+| username | varchar(30) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
   
- <li> mysql> insert into corporate(corporateName,address,contactNumber) values ('Infosys','Mumbai,India','1111111111'),('Wipro','Pune,India','2222222222');
+ mysql> desc corporate;
++---------------+-------------+------+-----+---------+----------------+
+| Field         | Type        | Null | Key | Default | Extra          |
++---------------+-------------+------+-----+---------+----------------+
+| corporateId   | int         | NO   | PRI | NULL    | auto_increment |
+| corporateName | varchar(30) | YES  |     | NULL    |                |
+| address       | varchar(30) | YES  |     | NULL    |                |
+| contactNumber | varchar(10) | YES  |     | NULL    |                |
+| softdeleted   | tinyint(1)  | YES  |     | 0       |                |
++---------------+-------------+------+-----+---------+----------------+
   
- <li> mysql> insert into users values(1001,'kim@infosys.in','userC11##','Kim','IT','Mumbai,India','1111111111'),(1002,'lee@wipro.in','userc22##','Lee','HR','Pune,India','2222222222');
-   
-<li> mysql> insert into accounts values(1001,'1122334C11','Account 1','Mumbai,India','Rupee','500000',1,'50000','50000000','Infosys');
+mysql> desc users;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| corporateId   | int         | YES  | MUL | NULL    |       |
+| loginId       | varchar(30) | YES  |     | NULL    |       |
+| password      | varchar(20) | YES  |     | NULL    |       |
+| username      | varchar(30) | YES  |     | NULL    |       |
+| department    | varchar(20) | YES  |     | NULL    |       |
+| address       | varchar(30) | YES  |     | NULL    |       |
+| contactNumber | varchar(10) | YES  |     | NULL    |       |
+| changed       | tinyint(1)  | YES  |     | 0       |       |
++---------------+-------------+------+-----+---------+-------+
 
-<li> mysql> insert into accounts values(1002,'2233411C22','Account 1','Tokyo,Japan','Yen','450000',1,'50000','50000000','Wipro');
+ mysql> desc accounts;
++----------------+-------------+------+-----+---------+----------------+
+| Field          | Type        | Null | Key | Default | Extra          |
++----------------+-------------+------+-----+---------+----------------+
+| corporateId    | int         | YES  | MUL | NULL    |                |
+| accountNumber  | int         | NO   | PRI | NULL    | auto_increment |
+| accountName    | varchar(20) | YES  |     | NULL    |                |
+| branch         | varchar(20) | YES  |     | NULL    |                |
+| currency       | varchar(20) | YES  |     | NULL    |                |
+| balance        | mediumtext  | YES  |     | NULL    |                |
+| active         | tinyint(1)  | YES  |     | NULL    |                |
+| openingBalance | mediumtext  | YES  |     | NULL    |                |
+| closingBalance | mediumtext  | YES  |     | NULL    |                |
++----------------+-------------+------+-----+---------+----------------+
+
+ mysql> desc transaction;
++-----------------+-------------+------+-----+---------+----------------+
+| Field           | Type        | Null | Key | Default | Extra          |
++-----------------+-------------+------+-----+---------+----------------+
+| accountNumber   | int         | YES  | MUL | NULL    |                |
+| transactionId   | int         | NO   | PRI | NULL    | auto_increment |
+| transactionType | varchar(10) | YES  |     | NULL    |                |
+| transactionDate | date        | YES  |     | NULL    |                |
+| balance         | mediumtext  | YES  |     | NULL    |                |
++-----------------+-------------+------+-----+---------+----------------+
+
   
-<li> mysql> insert into transaction values("7654321C22",1007,"credit","2021-08-03","200000");
-
-<li> mysql> insert into transaction values("7654321C22",1008,"debit","2021-08-25","52000");
-
-<li> mysql> insert into transaction values("4122334C22",1009,"credit","2021-08-03","200000");
-
-<li> mysql> insert into transaction values("4122334C22",1010,"debit","2021-08-23","520000");
+ 
+  
