@@ -34,55 +34,55 @@ mysql> desc bank_login_cred;
 +----------+-------------+------+-----+---------+-------+
   
  mysql> desc corporate;
-+---------------+-------------+------+-----+---------+----------------+
-| Field         | Type        | Null | Key | Default | Extra          |
-+---------------+-------------+------+-----+---------+----------------+
-| corporateId   | int         | NO   | PRI | NULL    | auto_increment |
-| corporateName | varchar(30) | YES  |     | NULL    |                |
-| address       | varchar(30) | YES  |     | NULL    |                |
-| contactNumber | varchar(10) | YES  |     | NULL    |                |
-| softdeleted   | tinyint(1)  | YES  |     | 0       |                |
-+---------------+-------------+------+-----+---------+----------------+
++---------------+-------------+------+-----+---------+----------------+ <br>
+| Field         | Type        | Null | Key | Default | Extra          | <br>
++---------------+-------------+------+-----+---------+----------------+ <br>
+| corporateId   | int         | NO   | PRI | NULL    | auto_increment | <br>
+| corporateName | varchar(30) | YES  |     | NULL    |                | <br>
+| address       | varchar(30) | YES  |     | NULL    |                | <br>
+| contactNumber | varchar(10) | YES  |     | NULL    |                | <br>
+| softdeleted   | tinyint(1)  | YES  |     | 0       |                | <br>
++---------------+-------------+------+-----+---------+----------------+ <br>
   
 mysql> desc users;
-+---------------+-------------+------+-----+---------+-------+
-| Field         | Type        | Null | Key | Default | Extra |
-+---------------+-------------+------+-----+---------+-------+
-| corporateId   | int         | YES  | MUL | NULL    |       |
-| loginId       | varchar(30) | YES  |     | NULL    |       |
-| password      | varchar(20) | YES  |     | NULL    |       |
-| username      | varchar(30) | YES  |     | NULL    |       |
-| department    | varchar(20) | YES  |     | NULL    |       |
-| address       | varchar(30) | YES  |     | NULL    |       |
-| contactNumber | varchar(10) | YES  |     | NULL    |       |
-| changed       | tinyint(1)  | YES  |     | 0       |       |
-+---------------+-------------+------+-----+---------+-------+
++---------------+-------------+------+-----+---------+-------+ <br>
+| Field         | Type        | Null | Key | Default | Extra | <br>
++---------------+-------------+------+-----+---------+-------+ <br>
+| corporateId   | int         | YES  | MUL | NULL    |       | <br>
+| loginId       | varchar(30) | YES  |     | NULL    |       | <br>
+| password      | varchar(20) | YES  |     | NULL    |       | <br>
+| username      | varchar(30) | YES  |     | NULL    |       | <br>
+| department    | varchar(20) | YES  |     | NULL    |       | <br>
+| address       | varchar(30) | YES  |     | NULL    |       | <br>
+| contactNumber | varchar(10) | YES  |     | NULL    |       | <br>
+| changed       | tinyint(1)  | YES  |     | 0       |       | <br>
++---------------+-------------+------+-----+---------+-------+ <br>
 
  mysql> desc accounts;
-+----------------+-------------+------+-----+---------+----------------+
-| Field          | Type        | Null | Key | Default | Extra          |
-+----------------+-------------+------+-----+---------+----------------+
-| corporateId    | int         | YES  | MUL | NULL    |                |
-| accountNumber  | int         | NO   | PRI | NULL    | auto_increment |
-| accountName    | varchar(20) | YES  |     | NULL    |                |
-| branch         | varchar(20) | YES  |     | NULL    |                |
-| currency       | varchar(20) | YES  |     | NULL    |                |
-| balance        | mediumtext  | YES  |     | NULL    |                |
-| active         | tinyint(1)  | YES  |     | NULL    |                |
-| openingBalance | mediumtext  | YES  |     | NULL    |                |
-| closingBalance | mediumtext  | YES  |     | NULL    |                |
-+----------------+-------------+------+-----+---------+----------------+
++----------------+-------------+------+-----+---------+----------------+ <br>
+| Field          | Type        | Null | Key | Default | Extra          | <br>
++----------------+-------------+------+-----+---------+----------------+ <br>
+| corporateId    | int         | YES  | MUL | NULL    |                | <br>
+| accountNumber  | int         | NO   | PRI | NULL    | auto_increment | <br>
+| accountName    | varchar(20) | YES  |     | NULL    |                | <br>
+| branch         | varchar(20) | YES  |     | NULL    |                | <br>
+| currency       | varchar(20) | YES  |     | NULL    |                | <br>
+| balance        | mediumtext  | YES  |     | NULL    |                | <br>
+| active         | tinyint(1)  | YES  |     | NULL    |                | <br>
+| openingBalance | mediumtext  | YES  |     | NULL    |                | <br>
+| closingBalance | mediumtext  | YES  |     | NULL    |                | <br>
++----------------+-------------+------+-----+---------+----------------+ <br>
 
  mysql> desc transaction;
-+-----------------+-------------+------+-----+---------+----------------+
-| Field           | Type        | Null | Key | Default | Extra          |
-+-----------------+-------------+------+-----+---------+----------------+
-| accountNumber   | int         | YES  | MUL | NULL    |                |
-| transactionId   | int         | NO   | PRI | NULL    | auto_increment |
-| transactionType | varchar(10) | YES  |     | NULL    |                |
-| transactionDate | date        | YES  |     | NULL    |                |
-| balance         | mediumtext  | YES  |     | NULL    |                |
-+-----------------+-------------+------+-----+---------+----------------+
++-----------------+-------------+------+-----+---------+----------------+ <br>
+| Field           | Type        | Null | Key | Default | Extra          | <br>
++-----------------+-------------+------+-----+---------+----------------+ <br>
+| accountNumber   | int         | YES  | MUL | NULL    |                | <br>
+| transactionId   | int         | NO   | PRI | NULL    | auto_increment | <br>
+| transactionType | varchar(10) | YES  |     | NULL    |                | <br>
+| transactionDate | date        | YES  |     | NULL    |                | <br>
+| balance         | mediumtext  | YES  |     | NULL    |                | <br> 
++-----------------+-------------+------+-----+---------+----------------+ <br>
 
   
  
