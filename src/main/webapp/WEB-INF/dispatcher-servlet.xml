@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+        
+    <context:component-scan base-package="com.pack.bank"></context:component-scan>
+	<mvc:annotation-driven />	
+		
+	<bean id="dataSource"
+       class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+    	<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+    	<property name="url" value="jdbc:mysql://localhost:3306/smartbank?useSSL=false"/>
+    	<property name="username" value="root"/>
+   		<property name="password" value="#&amp;AnaShree24##"/>
+   
+	</bean>
+
+	<bean id="viewResolver"
+	class="org.springframework.web.servlet.view.InternalResourceViewResolver">	
+
+		<property name="prefix">
+			<value>/WEB-INF/pages/</value>
+		</property>
+		<property name="suffix">
+			<value>.jsp</value>
+		</property>
+	</bean>
+	
+	<mvc:resources mapping="/resources/css/**" location="/resources/css/" />
+    <mvc:resources mapping="/resources/cliparts/**" location="/resources/cliparts/" />
+    <mvc:resources mapping="/CorporateSetUp/**" location="/WEB-INF/pages/CorporateSetUp/" />
+    <mvc:resources mapping="/AccountSetUp/**" location="/WEB-INF/pages/AccountSetUp/" />
+    <mvc:resources mapping="/UserSetUp/**" location="/WEB-INF/pages/UserSetUp/" />
+    <mvc:resources mapping="/FrontOffice/**" location="/WEB-INF/pages/FrontOffice/" />
+    <mvc:resources mapping="/login" location="/webapp/" />
+        
+</beans>

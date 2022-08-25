@@ -1,0 +1,76 @@
+@charset "ISO-8859-1";
+@import url('https://fonts.googleapis.com/css2?family=Oleo+Script');
+*{
+ 
+  font-family: 'Oleo Script', cursive;
+}
+html{
+    height: 100%;
+}
+body{
+	background-color:white;
+}
+.card {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  width: 50%;
+  padding-top: 10px;
+  background-color:white;
+}
+.flex-container{
+	display: flex;
+	width:100%;
+	margin-top:5%;
+}
+.flex-left{
+	margin-left:30px;
+	margin-right:10px;
+	width:80%;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    height:300px;
+    text-align:center;
+}
+.nav{
+	background-color:blue;
+	height:40px;
+	color:white;
+}
+.nav h3{
+	padding-left:10px;
+	padding-top:0.5px;
+	display:inline-block;
+}
+.nav a{
+	color:white; 
+	float:right; 
+	padding-right:5px;
+	padding-top:10px;
+}
+.ac{
+	padding-left:2px;
+	border:1px solid rgb(161,52,235);
+	background-color:rgb(161, 52, 235);
+	color:rgb(163, 243, 155);
+	width:100%;
+	text-align:center;
+}
+.ac-r{
+	color:white; 
+	text-decoration: underline;
+}
+.ac-r th{
+	width:15%;
+}
+.input[type=submit] .button{
+	background-color:blue;
+	color:white;
+	margin-left:5px;
+	border-color:blue;
+	display:block;
+}
+td a{
+	color:rgb(163, 243, 155);
+}
+th{
+	font-weight:normal;
+    padding:0px;
+}
